@@ -55,7 +55,7 @@ The user should reset the dashboard filters or select a valid date range, for ex
 
 After refreshing the dashboard, the data should appear again.
 
-## Customer Response
+## Example Customer Response
 
 Hi,
 
