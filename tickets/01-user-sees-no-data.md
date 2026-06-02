@@ -1,6 +1,6 @@
 # Ticket 01 - User sees no data
 > This is a fictional learning case based on a realistic SaaS support scenario.
-## Customer Report
+## Simulated Customer Report
 
 The customer can log in, but the dashboard is empty.
 
