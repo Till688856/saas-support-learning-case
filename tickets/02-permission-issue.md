@@ -12,12 +12,12 @@ Customer message:
 
 ## Initial Questions
 
-- What exact error message does the user see?
-- Is only one user affected?
-- Can other users in the same organization access the reports page?
-- Did the user recently change role or team?
-- Was the user newly invited to the workspace?
-- Which browser is the user using?
+* What exact error message does the user see?
+* Is only one user affected?
+* Can other users in the same organization access the reports page?
+* Did the user recently change role or team?
+* Was the user newly invited to the workspace?
+* Which browser is the user using?
 
 ## Reproduction Steps
 
@@ -36,12 +36,23 @@ This means the reports feature itself is working. The issue is most likely relat
 
 Checked items:
 
-- Workspace assignment
-- User role
-- Team assignment
-- Reports permission
-- Feature availability
-- Browser/session issue
+* Workspace assignment
+* User role
+* Team assignment
+* Reports permission
+* Feature availability
+* Browser/session issue
+
+## How I Would Verify This
+
+In a real support tool, I would verify this by checking:
+
+* the affected user's role
+* the affected user's workspace or organization
+* whether a working user has a different role
+* whether the reports feature is enabled for the organization
+* whether the user recently changed team or permissions
+* whether the error appears in another browser or session
 
 ## Root Cause
 
@@ -77,7 +88,7 @@ To fix this, an admin in your organization can change the user's role to "Manage
 
 After the role change, the user should log out and log in again.
 
-Best regards,  
+Best regards,
 Till
 
 ## Internal Engineering Note
@@ -86,11 +97,11 @@ No engineering escalation needed.
 
 Reason:
 
-- Only one user is affected
-- Other users can access reports
-- Reports feature is available
-- No system error found
-- Issue is caused by user role permissions
+* Only one user is affected
+* Other users can access reports
+* Reports feature is available
+* No system error found
+* Issue is caused by user role permissions
 
 Possible product improvement:
 
@@ -104,10 +115,10 @@ A permission issue does not always mean that something is broken.
 
 Before escalating, I should compare the affected user with a working user and check:
 
-- role
-- permissions
-- workspace
-- team assignment
-- feature access
+* role
+* permissions
+* workspace
+* team assignment
+* feature access
 
-This case also shows why clear error messages are important for customers.
+This case helped me understand how role-based access issues can look like product errors from the customer's perspective.
