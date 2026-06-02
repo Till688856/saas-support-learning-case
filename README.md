@@ -19,6 +19,7 @@ This project helps me connect my current experience with SaaS/Product Support ro
 ## Included cases
 
 - `01-user-sees-no-data.md` - User can log in, but the dashboard is empty
+- `02-permission-issue.md` - User cannot access the reports page because of missing permissions
 
 ## Note
 
