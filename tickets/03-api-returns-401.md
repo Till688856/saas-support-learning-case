@@ -12,13 +12,13 @@ Customer message:
 
 ## Initial Questions
 
-- When did the issue start?
-- Is every API request failing or only one endpoint?
-- Was the API key or token changed recently?
-- Which endpoint is affected?
-- Which environment is used: production or sandbox?
-- Can the customer share the request headers without exposing secrets?
-- Is there an error response body?
+* When did the issue start?
+* Is every API request failing or only one endpoint?
+* Was the API key or token changed recently?
+* Which endpoint is affected?
+* Which environment is used: production or sandbox?
+* Can the customer share the request headers without exposing secrets?
+* Is there an error response body?
 
 ## Reproduction Steps
 
@@ -37,15 +37,15 @@ The API endpoint itself is available, but the request is rejected before access 
 
 Checked items:
 
-- Authorization header
-- API token format
-- Token expiration
-- API key status
-- Correct environment
-- Recent credential changes
-- Difference between 401 and 403
+* Authorization header
+* API token format
+* Token expiration
+* API key status
+* Correct environment
+* Recent credential changes
+* Difference between 401 and 403
 
-Example failing request:
+## Example Failing Request
 
 ```http
 GET /api/v1/reports HTTP/1.1
@@ -53,7 +53,7 @@ Host: api.example-saas.com
 Authorization: Bearer expired_token
 ```
 
-Example response:
+## Example Response
 
 ```json
 {
@@ -61,6 +61,17 @@ Example response:
   "message": "The access token is expired or invalid."
 }
 ```
+
+## How I Would Verify This
+
+In a real support tool, I would verify this by checking:
+
+* whether the Authorization header is included
+* whether the token is expired or revoked
+* whether the token format is correct
+* whether the customer is using the correct environment
+* whether the same request works with a valid test token
+* whether the issue is 401 Unauthorized or 403 Forbidden
 
 ## Root Cause
 
@@ -93,7 +104,7 @@ The token is expired or no longer valid. Please generate a new access token in t
 
 After replacing the token, retry the request. The API should then accept the request again.
 
-Best regards,  
+Best regards,
 Till
 
 ## Internal Engineering Note
@@ -102,10 +113,10 @@ No engineering escalation needed at this stage.
 
 Reason:
 
-- API endpoint is available
-- Error is authentication-related
-- Response clearly indicates an invalid or expired token
-- Issue can be solved by replacing the token
+* API endpoint is available
+* Error is authentication-related
+* Response clearly indicates an invalid or expired token
+* Issue can be solved by replacing the token
 
 Possible product improvement:
 
@@ -121,10 +132,10 @@ A 401 error means the request is not properly authenticated.
 
 Before escalating API issues, I should check:
 
-- Is the token included?
-- Is the token expired?
-- Is the Authorization header correct?
-- Is the customer using the right environment?
-- Is the issue 401 Unauthorized or 403 Forbidden?
+* Is the token included?
+* Is the token expired?
+* Is the Authorization header correct?
+* Is the customer using the right environment?
+* Is the issue 401 Unauthorized or 403 Forbidden?
 
 This case helped me understand basic API authentication troubleshooting from a support perspective.
