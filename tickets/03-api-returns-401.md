@@ -51,3 +51,80 @@ Example failing request:
 GET /api/v1/reports HTTP/1.1
 Host: api.example-saas.com
 Authorization: Bearer expired_token
+```
+
+Example response:
+
+```json
+{
+  "error": "unauthorized",
+  "message": "The access token is expired or invalid."
+}
+```
+
+## Root Cause
+
+The customer's access token had expired.
+
+The integration was still using the old token, so the API rejected the request with 401 Unauthorized.
+
+## Fix / Workaround
+
+The customer should generate a new access token and update the integration configuration.
+
+Suggested steps:
+
+1. Open API settings.
+2. Generate a new access token.
+3. Replace the old token in the integration.
+4. Save the configuration.
+5. Retry the API request.
+6. Set a reminder or process to rotate tokens before they expire.
+
+## Example Customer Response
+
+Hi,
+
+Thanks for the details.
+
+I checked the error and the API endpoint itself appears to be available. The 401 Unauthorized response is caused by the access token used in the request.
+
+The token is expired or no longer valid. Please generate a new access token in the API settings and update it in your integration configuration.
+
+After replacing the token, retry the request. The API should then accept the request again.
+
+Best regards,  
+Till
+
+## Internal Engineering Note
+
+No engineering escalation needed at this stage.
+
+Reason:
+
+- API endpoint is available
+- Error is authentication-related
+- Response clearly indicates an invalid or expired token
+- Issue can be solved by replacing the token
+
+Possible product improvement:
+
+The API documentation could include a clearer troubleshooting section for 401 errors.
+
+Suggested addition:
+
+> 401 Unauthorized usually means the token is missing, expired, invalid or sent in the wrong format.
+
+## What I Learned
+
+A 401 error means the request is not properly authenticated.
+
+Before escalating API issues, I should check:
+
+- Is the token included?
+- Is the token expired?
+- Is the Authorization header correct?
+- Is the customer using the right environment?
+- Is the issue 401 Unauthorized or 403 Forbidden?
+
+This case helped me understand basic API authentication troubleshooting from a support perspective.
